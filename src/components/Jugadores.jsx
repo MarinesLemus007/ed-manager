@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const Jugadores =({jugadores, agregarTitular})=>(
+const Jugadores =({jugadores, agregarTitular, agregarSuplente})=>(
 <section>
     <h2>Jugadores</h2>
     <div className="contenedor-jugadores">
@@ -11,7 +11,7 @@ const Jugadores =({jugadores, agregarTitular})=>(
                 <h3>{j.nombre}</h3>
                 <div>
                     <button onClick={()=>agregarTitular(j)}>Titular</button>
-                    <button>Suplente</button>
+                    <button onClick={()=>agregarSuplente(j)}>Suplente</button>
                 </div>
             </article>
         ))
@@ -28,6 +28,12 @@ const mapDispatchToProps = dispatch => ({
     agregarTitular(jugador){
         dispatch({
             type:"AGREGAR_TITULAR",
+            jugador
+        })
+    },
+    agregarSuplente(jugador){
+        dispatch({
+            type:"AGREGAR_SUPLENTE",
             jugador
         })
     }
